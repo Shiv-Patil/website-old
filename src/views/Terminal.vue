@@ -1,36 +1,34 @@
 <template>
   <div class="terminal">
-    <div class="page-content">
-      <div id="titlebar">
-        <div id="title-text-container">
-          <img id="icon" alt="icon" src="@/assets/terminal-icon.png" />
-          <div id="title-text">Terminal</div>
-        </div>
-        <router-link to="/gui">
-          <button class="button">GUI</button>
-        </router-link>
+    <div id="titlebar">
+      <div id="title-text-container">
+        <img id="icon" alt="icon" src="@/assets/terminal-icon.png" />
+        <div id="title-text">Terminal</div>
       </div>
-      <div id="text-area-container">
-        <textarea
-          id="textarea"
-          ref="textarea"
-          v-model="text"
-          data-gramm_editor="false"
-          ondragstart="return false"
-          ondrop="return false"
-          spellcheck="false"
-          @input="gotInput()"
-          @keydown="keyDown($event)"
-          @paste="gotInput()"
-        ></textarea>
-      </div>
+      <router-link to="/gui">
+        <button class="button">GUI</button>
+      </router-link>
+    </div>
+    <div id="text-area-container">
+      <textarea
+        id="textarea"
+        ref="textarea"
+        v-model="text"
+        data-gramm_editor="false"
+        ondragstart="return false"
+        ondrop="return false"
+        spellcheck="false"
+        @input="gotInput()"
+        @keydown="keyDown($event)"
+        @paste="gotInput()"
+      ></textarea>
     </div>
   </div>
 </template>
 
 <script>
-import terminal from "../terminal/terminal";
-import iostream from "../terminal/iostream";
+import terminal from "../js/terminal/terminal";
+import iostream from "../js/terminal/iostream";
 
 export default {
   name: "Home",
@@ -60,7 +58,8 @@ export default {
 };
 
 document.oncontextmenu = function (e) {
-  var target = typeof e != "undefined" ? e.target : event.srcElement;
+  if (!e) return;
+  const target = e.target;
   if (target.id === "text-area-container" || target.id === "textarea") {
     const copied = terminal.getSelectedText();
     if (!copied) {
@@ -89,17 +88,8 @@ document.oncontextmenu = function (e) {
   top: 0;
   bottom: 0;
   padding: 10px;
-}
-
-.page-content {
-  flex: 1;
   display: flex;
-  min-width: 204px;
-  min-height: 200px;
   flex-direction: column;
-  overflow: auto;
-  height: 100%;
-  margin: 0 auto;
 }
 
 #titlebar {
@@ -135,7 +125,7 @@ document.oncontextmenu = function (e) {
 }
 
 #text-area-container {
-  height: 100%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

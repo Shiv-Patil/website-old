@@ -8,19 +8,11 @@ const routes = [
     alias: "/terminal",
     name: "Terminal",
     component: Terminal,
-    meta: {
-      enterClass: "animate__animated animate__zoomIn",
-      leaveClass: "animate__animated animate__zoomOut",
-    },
   },
   {
     path: "/gui",
     name: "Home",
     component: Home,
-    meta: {
-      enterClass: "animate__animated animate__fadeInLeft",
-      leaveClass: "animate__animated animate__fadeOutRight",
-    },
   },
 ];
 
