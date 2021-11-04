@@ -1,6 +1,5 @@
-<template>
+<template class="home">
   <div id="snackbar" class="snackbar">Discord tag copied</div>
-  <div class="home" ref="home">
     <img src="@/assets/background__inner.jpg" class="bg__inner" alt="website background"/>
     <div class="nav">
       <router-link class="nav__item box" to="/">Terminal</router-link>
@@ -23,7 +22,6 @@
         </div>
       </div>
     </div>
-  </div>
   <div id="loader__wrapper"><div class="loader"></div></div>
 </template>
 
@@ -63,12 +61,8 @@ export default {
 }
 
 .home {
-  width: 100%;
-  height: 1500px;
-  overflow-x: hidden;
-  overflow-y: auto;
   /*perspective: 24px;*/
-  min-width: 372px;
+  min-width: 300px;
 }
 
 .nav {
@@ -79,17 +73,18 @@ export default {
 }
 
 .nav__item {
-  margin: 8px;
-  padding: 8px;
+  font-size: max(10px, min(4vw, 16px));
+  margin: max(4px, min(2vw, 8px));
+  padding: max(4px, min(2vw, 8px));
   user-select: none;
   color: #212131;
   text-decoration: none;
+  font-family: Poppins,Montserrat,serif;
 }
 
 .snackbar {
   display: none;
   min-width: 250px;
-  margin-left: -125px;
   background-color: #efefef;
   color: #333;
   text-align: center;
@@ -99,6 +94,9 @@ export default {
   z-index: 1;
   left: 50%;
   bottom: 30px;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-family: Poppins,Montserrat,serif;
 }
 
 .snackbar.show {
@@ -119,11 +117,9 @@ export default {
 .bg__inner {
   position: absolute;
   top: 0;
-  right: 0;
   left: 0;
-  bottom: 0;
-  width: 100%;
-  height: max(1500px, 100vh);
+  height: max(100%, 1500px);
+  width: max(100%, 300px);
 }
 
 /*.parallax-bg {*/
@@ -156,15 +152,15 @@ export default {
   left: 65%;
   width: 50%;
   transform: translateX(-50%) translateY(-50%);
-  font-size: 30px;
-  font-weight: bold;
+  font-size: max(25px, min(6vw, 30px));
   color: #212131;
+  font-family: "Poppins Medium",Montserrat,serif;
 }
 
 .hero__image__wrapper {
   position: absolute;
-  height: 290px;
-  width: 290px;
+  height: min(290px, 80vw);
+  width: min(290px, 80vw);
   top: 25%;
   left: 10%;
   border-radius: 50%;
@@ -179,15 +175,14 @@ export default {
 
 @media screen and (max-width: 1100px) {
   .hero__title {
-    font-size: max(25px, min(6vw, 30px));
     top: 75%;
     left: 50%;
     width: 80%;
   }
 
   .hero__image__wrapper {
-    height: 250px;
-    width: 250px;
+    height: min(240px, 80vw);
+    width: min(240px, 80vw);
     top: 12%;
     left: 50%;
     transform: translateX(-50%);
