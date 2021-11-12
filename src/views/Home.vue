@@ -150,6 +150,9 @@ export default {
   },
   unmounted() {
     window.removeEventListener("scroll", this.pageScroll);
+    document.querySelectorAll(".neu").forEach((ele) => {
+      if (ele.classList.contains("scale_and_fade_in")) ele.classList.remove("scale_and_fade_in");
+    });
   },
 };
 </script>
