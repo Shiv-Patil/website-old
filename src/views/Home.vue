@@ -1,9 +1,7 @@
 <template class="home">
   <div id="snackbar" class="snackbar">Discord tag copied</div>
-  <img
-    src="@/assets/background__inner.jpg"
+  <div
     class="bg__inner"
-    alt="website background"
   />
   <div class="nav">
     <router-link class="nav__item neu" to="/" @click="nav_item_click(this)"
@@ -190,7 +188,7 @@ export default {
   bottom: 0;
   left: 0;
   box-shadow: 4px 4px 8px rgba(94, 104, 121, 0.4),
-    -2px -2px 5px rgba(252, 252, 252, 0.8);
+    -2px -2px 5px rgba(252, 252, 252, 0.6);
   background-color: rgba(94, 104, 121, 0.05);
   opacity: 0;
   transform: scale(1.04166);
@@ -210,7 +208,7 @@ export default {
 
 .nav__item:active::before {
   box-shadow: inset 2px 2px 4px rgba(94, 104, 121, 0.4),
-    inset -2px -2px 4px rgba(252, 252, 252, 0.8);
+    inset -2px -2px 4px rgba(252, 252, 252, 0.6);
   transform: scale(1.04166) !important;
 }
 
@@ -266,6 +264,19 @@ export default {
   height: max(100%, 1500px);
   width: max(100%, 200px);
   user-select: none;
+  background-color: #7dd5fa;
+  opacity: 1;
+}
+
+.bg__inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0.06;
+  background-image: url(../assets/noise.jpg);
 }
 
 .hero__wrapper {
@@ -302,7 +313,7 @@ export default {
   border-radius: 10px;
   background-color: rgba(94, 104, 121, 0.05);
   box-shadow: 12px 12px 20px rgba(94, 104, 121, 0.4),
-    -4px -4px 14px rgba(252, 252, 252, 0.8);
+    -4px -4px 14px rgba(252, 252, 252, 0.6);
   transform: scale(1.0204);
   opacity: 0;
 }
@@ -351,7 +362,7 @@ export default {
   border-radius: 50%;
   background-color: rgba(94, 104, 121, 0.05);
   box-shadow: 8px 8px 14px rgba(94, 104, 121, 0.4),
-    -3px -3px 8px rgba(252, 252, 252, 0.8);
+    -3px -3px 8px rgba(252, 252, 252, 0.6);
   opacity: 0;
   transform: scale(1);
 }
@@ -416,7 +427,7 @@ export default {
   border-radius: 10px;
   background-color: rgba(94, 104, 121, 0.05);
   box-shadow: 12px 12px 20px rgba(94, 104, 121, 0.4),
-    -4px -4px 14px rgba(252, 252, 252, 0.8);
+    -4px -4px 14px rgba(252, 252, 252, 0.6);
   transform: scale(1.0204);
   opacity: 0;
 }
@@ -476,7 +487,7 @@ export default {
   border-radius: 50%;
   background-color: rgba(94, 104, 121, 0.05);
   box-shadow: 8px 8px 14px rgba(94, 104, 121, 0.4),
-    -3px -3px 8px rgba(252, 252, 252, 0.8);
+    -3px -3px 8px rgba(252, 252, 252, 0.6);
   opacity: 0;
   transform: scale(1);
 }
