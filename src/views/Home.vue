@@ -563,6 +563,7 @@ export default {
   left: 0;
   overflow-x: hidden;
   overflow-y: hidden;
+  z-index: 99;
 }
 
 .loader,
