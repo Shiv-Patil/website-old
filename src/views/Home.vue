@@ -1,8 +1,6 @@
 <template class="home">
   <div id="snackbar" class="snackbar">Discord tag copied</div>
-  <div
-    class="bg__inner"
-  />
+  <div class="bg__inner" />
   <div class="nav">
     <router-link class="nav__item neu" to="/" @click="nav_item_click(this)"
       >Terminal
@@ -137,12 +135,16 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("scroll", throttle(this.pageScroll, this.scrollEventTimeout));
+    window.addEventListener(
+      "scroll",
+      throttle(this.pageScroll, this.scrollEventTimeout)
+    );
   },
   unmounted() {
     window.removeEventListener("scroll", this.pageScroll);
     document.querySelectorAll(".neu").forEach((ele) => {
-      if (ele.classList.contains("scale_and_fade_in")) ele.classList.remove("scale_and_fade_in");
+      if (ele.classList.contains("scale_and_fade_in"))
+        ele.classList.remove("scale_and_fade_in");
     });
   },
 };
@@ -151,11 +153,13 @@ export default {
 <style>
 :root {
   --neu-color-dark: #222629;
-  --new-color-light: #30363B;
+  --new-color-light: #30363b;
   --neu-bg: #292e32;
-  --new-widget-bg: linear-gradient(145deg, #24282C, #2E3438);
-  --neu: 9px 9px 17px var(--neu-color-dark), -9px -9px 17px var(--new-color-light);
-  --neu-inset: inset 3px 3px 7px var(--neu-color-dark), inset -3px -3px 7px var(--new-color-light);
+  --new-widget-bg: linear-gradient(145deg, #24282c, #2e3438);
+  --neu: 9px 9px 17px var(--neu-color-dark),
+    -9px -9px 17px var(--new-color-light);
+  --neu-inset: inset 3px 3px 7px var(--neu-color-dark),
+    inset -3px -3px 7px var(--new-color-light);
   --home-text-color: #ffffff;
 }
 

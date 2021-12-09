@@ -1,6 +1,5 @@
 <template>
-  <router-view>
-  </router-view>
+  <router-view> </router-view>
 </template>
 
 <style>
@@ -23,7 +22,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
