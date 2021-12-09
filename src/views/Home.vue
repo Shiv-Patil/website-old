@@ -100,21 +100,20 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import throttle from "../js/home/throttle";
 
 export default {
   name: "Home",
   data() {
     return {
       scrollEventTimeout: 400,
-      scrollEventLastCalled: Date.now(),
     };
   },
   components: {},
   methods: {
     bgLoaded() {
       document.getElementById("loader__wrapper").style.display = "none";
-      this.pageScrollTimeout();
+      this.pageScroll();
     },
     discordSnack() {
       navigator.clipboard.writeText("KrYmZiN#0311");
@@ -129,12 +128,6 @@ export default {
     },
     nav_item_click() {},
     pageScroll() {
-      if (Date.now() - this.scrollEventLastCalled > this.scrollEventTimeout) {
-        this.pageScrollTimeout();
-        this.scrollEventLastCalled = Date.now();
-      }
-    },
-    pageScrollTimeout() {
       const vh = window.innerHeight;
       document.querySelectorAll(".neu").forEach((ele) => {
         if (!ele.classList.contains("scale_and_fade_in"))
@@ -144,7 +137,7 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("scroll", this.pageScroll);
+    window.addEventListener("scroll", throttle(this.pageScroll, this.scrollEventTimeout));
   },
   unmounted() {
     window.removeEventListener("scroll", this.pageScroll);
@@ -155,7 +148,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+:root {
+  --neu-color-dark: #222629;
+  --new-color-light: #30363B;
+  --neu-bg: #292e32;
+  --new-widget-bg: linear-gradient(145deg, #24282C, #2E3438);
+  --neu: 9px 9px 17px var(--neu-color-dark), -9px -9px 17px var(--new-color-light);
+  --neu-inset: inset 3px 3px 7px var(--neu-color-dark), inset -3px -3px 7px var(--new-color-light);
+  --home-text-color: #ffffff;
+}
+
 .nav {
   display: flex;
   justify-content: center;
@@ -174,7 +177,8 @@ export default {
   margin: 8px max(4px, min(2vw, 8px));
   padding: max(4px, min(2vw, 9px));
   user-select: none;
-  color: #212131;
+  color: var(--home-text-color);
+  z-index: 2;
   text-decoration: none;
   font-family: Montserrat, sans-serif;
 }
@@ -187,9 +191,9 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  box-shadow: 4px 4px 8px rgba(94, 104, 121, 0.4),
-    -2px -2px 5px rgba(252, 252, 252, 0.6);
-  background-color: rgba(94, 104, 121, 0.05);
+  background: var(--new-widget-bg);
+  box-shadow: var(--neu);
+  z-index: -1;
   opacity: 0;
   transform: scale(1.04166);
 }
@@ -207,8 +211,7 @@ export default {
 }
 
 .nav__item:active::before {
-  box-shadow: inset 2px 2px 4px rgba(94, 104, 121, 0.4),
-    inset -2px -2px 4px rgba(252, 252, 252, 0.6);
+  box-shadow: var(--neu-inset);
   transform: scale(1.04166) !important;
 }
 
@@ -264,19 +267,8 @@ export default {
   height: max(100%, 1500px);
   width: max(100%, 200px);
   user-select: none;
-  background-color: #7dd5fa;
+  background: var(--neu-bg);
   opacity: 1;
-}
-
-.bg__inner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0.06;
-  background-image: url(../assets/noise.jpg);
 }
 
 .hero__wrapper {
@@ -293,6 +285,7 @@ export default {
   width: min(86%, 1200px);
   height: 100%;
   transform: scale(0.98);
+  z-index: 1;
 }
 
 .hero.scale_and_fade_in {
@@ -311,9 +304,9 @@ export default {
   bottom: 0;
   left: 0;
   border-radius: 10px;
-  background-color: rgba(94, 104, 121, 0.05);
-  box-shadow: 12px 12px 20px rgba(94, 104, 121, 0.4),
-    -4px -4px 14px rgba(252, 252, 252, 0.6);
+  background: var(--new-widget-bg);
+  box-shadow: var(--neu);
+  z-index: -1;
   transform: scale(1.0204);
   opacity: 0;
 }
@@ -325,7 +318,7 @@ export default {
   width: 50%;
   transform: translateX(-50%) translateY(-50%);
   font-size: max(32px, min(14vw, 76px));
-  color: #212131;
+  color: var(--home-text-color);
   font-family: "Dancing Script", Montserrat, serif;
 }
 
@@ -360,9 +353,9 @@ export default {
   bottom: 0;
   left: 0;
   border-radius: 50%;
-  background-color: rgba(94, 104, 121, 0.05);
-  box-shadow: 8px 8px 14px rgba(94, 104, 121, 0.4),
-    -3px -3px 8px rgba(252, 252, 252, 0.6);
+  background: var(--new-widget-bg);
+  box-shadow: var(--neu);
+  z-index: -1;
   opacity: 0;
   transform: scale(1);
 }
@@ -425,9 +418,9 @@ export default {
   bottom: 0;
   left: 0;
   border-radius: 10px;
-  background-color: rgba(94, 104, 121, 0.05);
-  box-shadow: 12px 12px 20px rgba(94, 104, 121, 0.4),
-    -4px -4px 14px rgba(252, 252, 252, 0.6);
+  background: var(--new-widget-bg);
+  box-shadow: var(--neu);
+  z-index: -1;
   transform: scale(1.0204);
   opacity: 0;
 }
@@ -485,9 +478,9 @@ export default {
   bottom: 0;
   left: 0;
   border-radius: 50%;
-  background-color: rgba(94, 104, 121, 0.05);
-  box-shadow: 8px 8px 14px rgba(94, 104, 121, 0.4),
-    -3px -3px 8px rgba(252, 252, 252, 0.6);
+  background: var(--new-widget-bg);
+  box-shadow: var(--neu);
+  z-index: -1;
   opacity: 0;
   transform: scale(1);
 }
@@ -518,13 +511,13 @@ export default {
 
 .about__text__title {
   font-size: max(20px, min(9vw, 48px));
-  color: #212131;
+  color: var(--home-text-color);
   font-family: "Poppins Light", Montserrat, serif;
 }
 
 .about__text {
   font-size: max(11px, min(3.6vw, 24px));
-  color: #212131;
+  color: var(--home-text-color);
   font-family: Montserrat, serif;
   text-align: left;
   padding: min(3vw, 40px);
