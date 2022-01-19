@@ -250,7 +250,7 @@ export default {
   border-radius: 2px;
   padding: 16px;
   position: fixed;
-  z-index: 1;
+  z-index: 69;
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
